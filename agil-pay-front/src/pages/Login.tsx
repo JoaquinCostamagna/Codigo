@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Avatar, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { getRanHex, sleep } from '../utils/shared-methods.js';
+import { getRanHex, sleep, verifyCuit } from '../utils/shared-methods.js';
 import { useForm } from "react-hook-form";
 
 export default function Login(props) {
@@ -41,6 +41,7 @@ export default function Login(props) {
                     alignItems: 'center',
                 }}
             >
+                <h1 className='text-6xl mb-4'>AgilPay</h1>
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -50,6 +51,7 @@ export default function Login(props) {
                 <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
                     <TextField
                         margin="normal"
+                        type="number"
                         fullWidth
                         id="cuil"
                         label="Cuil"
@@ -57,8 +59,9 @@ export default function Login(props) {
                         autoFocus
                         error={!!errors.cuil}
                         helperText={errors.cuil?.message}
-                        {...register('cuil', { required: "Debe ingresar su Cuil" })}
+                        {...register('cuil', { required: "Debe ingresar su Cuil", validate: (cuil) => verifyCuit(cuil) ? true : 'Debe ingresar un cuil con formato válido' })}
                     />
+
                     <TextField
                         margin="normal"
                         fullWidth
