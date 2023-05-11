@@ -1,17 +1,20 @@
 import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { useAuth } from "../utils/shared-methods";
 
-const useAuth = () => {
-    const token = localStorage.getItem('token') ? localStorage.getItem('token') : '';
-    return (token !== '')
-}
-
-const ProtectedRoutes = () => {
+const ProtectedRoutes = (props) => {
     const location = useLocation();
     const isAuthenticated = useAuth();
-    return isAuthenticated ?
-        <Outlet />
-        :
-        <Navigate to="/login" replace state={{ from: location }} />
+    if (props.loggedIn) {
+        return isAuthenticated ?
+            <Outlet />
+            :
+            <Navigate to="/login" replace state={{ from: location }} />
+    } else {
+        return !isAuthenticated ?
+            <Outlet />
+            :
+            <Navigate to="/Inicio" />
+    }
 }
 
 export default ProtectedRoutes;

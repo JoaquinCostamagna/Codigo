@@ -33,3 +33,8 @@ export function verifyCuit(cuit) {
 
 	return digito === verif;
 };
+
+export function useAuth() {
+	const token = localStorage.getItem('token') ? localStorage.getItem('token') : '';
+	return (token !== '')
+}

@@ -23,7 +23,9 @@ import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -107,6 +109,9 @@ export default function NavBar(props) {
 
     const navigate = useNavigate();
 
+    const userString = localStorage.getItem('user');
+    const user = userString ? JSON.parse(userString) : undefined;
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -123,7 +128,7 @@ export default function NavBar(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
+            <AppBar position="fixed" className='[&>*]:text-skin-light' open={open}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -137,14 +142,20 @@ export default function NavBar(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className='text-skin-light text-xl font-bold font-mono tracking-widest me-auto'>AgilPay</Typography>
-                    <AccountCircleRoundedIcon className='text-skin-light' />
+                    <Typography className='text-xl font-bold font-mono tracking-widest me-auto'>AgilPay</Typography>
+                    <Button className='text-skin-light rounded-full min-w-0'>
+                        <NotificationsRoundedIcon className='m-0' />
+                    </Button>
+                    <Button className='text-skin-light rounded-full min-w-0 normal-case	'>
+                        <AccountCircleRoundedIcon className='me-2' />
+                        <Typography className='text-md'>{user?.name}</Typography>
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" className='[&>div]:border-0' open={open}>
                 <DrawerHeader className='bg-skin-primary'>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon className='text-skin-light' /> : <ChevronLeftIcon className='text-skin-light' />}
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
@@ -199,7 +210,7 @@ export default function NavBar(props) {
                     </ListItem>
                 </List>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" className='min-w-[16.5rem]' sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 <Outlet />
             </Box>

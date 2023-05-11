@@ -13,7 +13,7 @@ export default function Login(props) {
 
 
     const users: any = [
-        { cuil: '20422581376', password: '42258137' }
+        { name: 'Joaquin Costamagna', cuil: '20422581376', password: '42258137' }
     ]
 
 
@@ -21,11 +21,12 @@ export default function Login(props) {
         setLoading(prev => prev + 1);
         try {
             await sleep(2000);
-            if (!users.find((user: any) => user.cuil == data.cuil && user.password == data.password)) {
+            const loggedUser = users.find((user: any) => user.cuil == data.cuil && user.password == data.password);
+            if (!loggedUser) {
                 setError('password', { message: 'Cuil o contraseña incorrectas' })
             } else {
                 const token = getRanHex(24);
-                props.handleLogin(token);
+                props.handleLogin(token, loggedUser);
             }
         } catch (error) { }
         setLoading(prev => prev - 1);
