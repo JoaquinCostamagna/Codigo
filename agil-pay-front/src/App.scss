@@ -1,0 +1,13 @@
+#root {
+    --bg-primary: #01aea3;
+    --bg-secondary: #0163ae;
+    --bg-light: #ccf1ea;
+    --bg-dark: #1b2b35;
+
+    --text-light: #efefef;
+    --text-dark: #131313;
+}
+
+.nav-link.active>li {
+    background-color: var(--bg-light);
+}
