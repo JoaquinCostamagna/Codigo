@@ -33,7 +33,7 @@ export default function Login(props) {
     }
 
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" className='text-skin-headline' maxWidth="sm">
             <Box
                 sx={{
                     marginTop: 8,
@@ -83,7 +83,7 @@ export default function Login(props) {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            className='text-white'
+                            className='text-skin-dark'
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Iniciar sesión
@@ -93,7 +93,7 @@ export default function Login(props) {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            className='text-black'
+                            className='text-skin-light'
                             startIcon={<CircularProgress size="1.5rem" />}
                             disabled
                             sx={{ mt: 3, mb: 2 }}

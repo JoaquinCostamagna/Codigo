@@ -2,46 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
-import { ThemeProvider } from '@mui/material'
-import { createTheme } from '@mui/material/styles'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.scss'
 
-const theme = createTheme({
-	palette: {
-		primary: {
-			main: '#01aea3',
-		},
-		secondary: {
-			main: '#0163ae'
-		},
-		background: {
-			default: "#fffcef"
-		}
-	},
-	typography: {
-		fontFamily: [
-			'-apple-system',
-			'BlinkMacSystemFont',
-			'"Segoe UI"',
-			'Roboto',
-			'"Helvetica Neue"',
-			'Arial',
-			'sans-serif',
-			'"Apple Color Emoji"',
-			'"Segoe UI Emoji"',
-			'"Segoe UI Symbol"',
-		].join(','),
-	},
-})
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<ThemeProvider theme={theme}>
-				<App />
-			</ThemeProvider>
+			<App />
 		</BrowserRouter>
 		<ToastContainer
 			theme="colored"
