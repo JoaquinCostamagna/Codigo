@@ -48,7 +48,7 @@ const closedMixin = (theme) => ({
     overflowX: 'hidden',
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up('sm')]: {
-        width: `calc(${theme.spacing(8)} + 1px)`,
+        width: `calc(${theme.spacing(9)} + 1px)`,
     },
 });
 
@@ -180,18 +180,20 @@ export default function NavBar(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar position="fixed" color="primary" enableColorOnDark className='[&>*]:text-skin-dark' open={open}>
+            <AppBar position="fixed" color="primary" enableColorOnDark className='[&>*]:text-skin-dark border-[var(--bg-secondary)] border-b-[2px]' open={open}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
                         onClick={handleDrawerToggle}
                         edge="start"
-                        className='md:me-5'
+                        className='me-5'
                     >
                         {open ? <ChevronLeftIcon /> : <MenuIcon />}
                     </IconButton>
-                    <Typography className='text-xl font-bold font-mono tracking-widest me-auto'>AgilPay</Typography>
+                    <Button className='bg-skin-background me-auto'>
+                        <Typography className='text-xl font-bold font-mono tracking-widest'>AgilPay</Typography>
+                    </Button>
                     {/* <Button className='text-skin-dark rounded-full min-w-0' onClick={toggleDarkMode}>
                         Modo
                     </Button> */}
@@ -215,6 +217,7 @@ export default function NavBar(props) {
                                     sx={{
                                         minHeight: 48,
                                         justifyContent: open ? 'initial' : 'center',
+                                        flexDirection: open ? 'row' : 'column',
                                         px: 2.5,
                                     }}
                                 >
@@ -222,13 +225,14 @@ export default function NavBar(props) {
                                         sx={{
                                             minWidth: 0,
                                             mr: open ? 3 : 'auto',
+                                            ml: 0.5,
                                             justifyContent: 'center',
                                         }}
 
                                     >
                                         {menu.icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={menu.text} sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary={menu.text} className={!open ? '[&>span]:text-[0.66rem]' : ''} />
                                 </ListItemButton>
                             </ListItem>
                         </NavLink>
@@ -249,6 +253,7 @@ export default function NavBar(props) {
                                 sx={{
                                     minWidth: 0,
                                     mr: open ? 3 : 'auto',
+                                    ml: 0.5,
                                     justifyContent: 'center',
                                 }}
                             >

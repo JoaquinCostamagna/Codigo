@@ -33,7 +33,7 @@ function App() {
 				}
 				: {
 					// palette values for dark mode
-					primary: { main: '#40e0d0' },
+					primary: { main: '#40e0d0', },
 					secondary: { main: '#0163ae' }
 				}),
 		},
